@@ -1,0 +1,22 @@
+{% extends 'product/base.html' %}
+{% load static %}
+{% block content %}
+ <h1 style="margin: 15px;">Home</h1>
+ <a class="btn btn-primary" href="{% url 'add_product' %}" role="button" style="margin-left: 10px;">Add product</a>
+ <br>
+ {% for product in products %}
+ <div class="card" style="width: 18rem; display: inline-block; margin: 15px;">
+    
+    <img src="{% static 'product/imgs/'|add:product.image %}" class="card-img-top" alt="{{ product }}" width="250" height="250">
+    <div class="card-body">
+      <h5 class="card-title">{{product.title}}</h5>
+      <p class="card-text">{{product.description}}</p>
+      <h6 class="card-title">{{product.price}}$</h6>
+      <p class="card-text">created: {{product.create_date}}</p>
+      <a href="{{product.get_show_url}}" class="btn btn-primary">Go to product</a>
+      
+
+    </div>
+  </div>
+ {% endfor %}
+{% endblock content %}
